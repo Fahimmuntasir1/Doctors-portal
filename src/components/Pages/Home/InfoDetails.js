@@ -3,7 +3,7 @@ import React from "react";
 const InfoDetails = ({ img, title, background, details }) => {
   return (
     <div
-      className={`card lg:card-side bg-accent px-5 text-white shadow-xl ${background}`}
+      className={`card lg:card-side bg-accent p-5 text-white shadow-xl ${background}`}
     >
       <figure>
         <img src={img} alt="Album" />
