@@ -1,5 +1,6 @@
 import React from "react";
 import appointmentImg from "../../../assets/images/appointment.png";
+import MyButton from "../../MyButton/MyButton";
 
 const ContactUs = () => {
   return (
@@ -32,9 +33,9 @@ const ContactUs = () => {
             rows="4"
             placeholder="Your Messages Here"
           ></textarea>
-          <button className="btn btn-primary w-32 text-white m-auto bg-gradient-to-r from-secondary to-primary">
-            Submit
-          </button>
+          <div className=" m-auto">
+            <MyButton>Submit</MyButton>
+          </div>
         </form>
       </div>
     </div>
