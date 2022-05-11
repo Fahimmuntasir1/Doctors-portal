@@ -11,7 +11,7 @@ const MakeAppointment = () => {
       <div className="flex-1 mt-[-100px] hidden lg:block w-full px-5">
         <img src={doctor} alt="doctor" />
       </div>
-      <div className="flex-1 mx-10">
+      <div className="flex-1 mx-10 my-10">
         <p className="text-primary font-bold">Appointment</p>
         <h2 className="text-4xl font-semibold text-white my-4">
           Make an appointment Today
@@ -24,7 +24,7 @@ const MakeAppointment = () => {
           look like readable English. Many desktop publishing packages and web
           page
         </p>
-        <button className="uppercase btn btn-primary bg-gradient-to-r from-secondary to-primary text-white">
+        <button className="uppercase btn btn-primary bg-gradient-to-r from-secondary to-primary text-white ">
           Get Started
         </button>
       </div>

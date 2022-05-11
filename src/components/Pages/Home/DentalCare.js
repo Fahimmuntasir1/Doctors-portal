@@ -4,11 +4,11 @@ import dentalCare from "../../../assets/images/treatment.png";
 const DentalCare = () => {
   return (
     <div>
-      <div class="hero min-h-screen px-24 my-24">
-        <div class="hero-content flex-col lg:flex-row">
+      <div class="hero ">
+        <div class="hero-content flex-col lg:flex-row px-10">
           <img
             src={dentalCare}
-            class="max-w-sm rounded-lg shadow-2xl lg:mx-20"
+            class="lg:max-w-sm w-full rounded-lg shadow-2xl lg:mx-20"
             alt=""
           />
           <div>

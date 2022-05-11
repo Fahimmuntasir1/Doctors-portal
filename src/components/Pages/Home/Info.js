@@ -6,7 +6,7 @@ import phone from "../../../assets/icons/phone.svg";
 
 const Info = () => {
   return (
-    <div className="grid lg:grid-cols-3 xs:grid-cols-12 gap-5 px-5">
+    <div className="grid lg:grid-cols-3 xs:grid-cols-12 gap-5 px-10">
       <InfoDetails
         details="Click the button to listen on Spotiwhy app."
         background="bg-gradient-to-r from-secondary to-primary"

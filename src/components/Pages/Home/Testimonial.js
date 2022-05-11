@@ -4,7 +4,7 @@ const Testimonial = ({ user }) => {
   const { img, name, country, review } = user;
   return (
     <div>
-      <div class="card lg:max-w-lg bg-base-100 shadow-xl">
+      <div class="card lg:max-w-lg bg-base-100 shadow-xl ">
         <div class="card-body">
           <p className="font-xs">{review}</p>
           <div>

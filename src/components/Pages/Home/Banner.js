@@ -9,11 +9,11 @@ const Banner = () => {
     backgroundRepeat: "no-repeat",
   };
   return (
-    <div className="hero min-h-screen " style={myStyle}>
-      <div className="hero-content flex-col lg:flex-row-reverse">
+    <div className="hero " style={myStyle}>
+      <div className="hero-content flex-col lg:flex-row-reverse py-20 px-10">
         <img
           src={chair}
-          className=" max-w-xl mx-10 rounded-lg shadow-2xl"
+          className=" mx-10 lg:w-3/6 rounded-lg shadow-2xl"
           alt=""
         ></img>
         <div>
