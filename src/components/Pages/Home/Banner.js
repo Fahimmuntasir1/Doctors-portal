@@ -10,7 +10,7 @@ const Banner = () => {
   };
   return (
     <div className="hero " style={myStyle}>
-      <div className="hero-content flex-col lg:flex-row-reverse py-20 px-10">
+      <div className="hero-content flex-col lg:flex-row-reverse py-32 px-10">
         <img
           src={chair}
           className=" mx-10 lg:w-3/6 rounded-lg shadow-2xl"

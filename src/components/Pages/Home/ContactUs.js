@@ -32,7 +32,7 @@ const ContactUs = () => {
             rows="4"
             placeholder="Your Messages Here"
           ></textarea>
-          <button className="btn btn-primary w-32 text-white m-auto">
+          <button className="btn btn-primary w-32 text-white m-auto bg-gradient-to-r from-secondary to-primary">
             Submit
           </button>
         </form>

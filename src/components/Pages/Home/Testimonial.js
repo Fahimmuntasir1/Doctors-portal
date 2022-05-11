@@ -4,13 +4,13 @@ const Testimonial = ({ user }) => {
   const { img, name, country, review } = user;
   return (
     <div>
-      <div class="card lg:max-w-lg bg-base-100 shadow-xl ">
-        <div class="card-body">
+      <div className="card lg:max-w-lg bg-base-100 shadow-xl ">
+        <div className="card-body">
           <p className="font-xs">{review}</p>
           <div>
             <div className="flex p-2">
-              <div class="avatar">
-                <div class="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <div className="avatar">
+                <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                   <img src={img} alt="" />
                 </div>
               </div>
