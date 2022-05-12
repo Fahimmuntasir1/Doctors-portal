@@ -1,8 +1,16 @@
 import React from "react";
 import { format } from "date-fns";
 
-const BookingModal = ({ treatment, date }) => {
+const BookingModal = ({ treatment, date, setTreatment }) => {
   const { slots, name } = treatment;
+
+  const handleSubmitModal = (e) => {
+    e.preventDefault();
+    const slot = e.target.slot.value;
+    console.log(name, slot);
+    setTreatment(null);
+  };
+
   return (
     <div>
       <input type="checkbox" id="booking-modal" class="modal-toggle" />
@@ -17,7 +25,10 @@ const BookingModal = ({ treatment, date }) => {
               ✕
             </label>
           </div>
-          <form className="grid grid-cols-1 gap-4 justify-items-center w-full">
+          <form
+            onSubmit={handleSubmitModal}
+            className="grid grid-cols-1 gap-4 justify-items-center w-full"
+          >
             <input
               type="text"
               disabled
@@ -25,19 +36,27 @@ const BookingModal = ({ treatment, date }) => {
               placeholder="Type here"
               class="input input-bordered w-full"
             />
-            <select class="select select-bordered w-full ">
+            <select name="slot" class="select select-bordered w-full ">
               {slots.map((slot) => (
                 <option value={slot}>{slot}</option>
               ))}
             </select>
             <input
               type="text"
-              placeholder="Type here"
+              name="name"
+              placeholder="Enter name here"
+              class="input input-bordered w-full "
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter email here"
               class="input input-bordered w-full "
             />
             <input
               type="text"
-              placeholder="Type here"
+              name="phone"
+              placeholder="Enter phone here"
               class="input input-bordered w-full "
             />
             <input
