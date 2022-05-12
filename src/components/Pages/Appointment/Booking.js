@@ -1,7 +1,6 @@
 import React from "react";
-import MyButton from "../../MyButton/MyButton";
 
-const Booking = ({ booking }) => {
+const Booking = ({ booking, setTreatment }) => {
   const { name, slots } = booking;
   return (
     <div>
@@ -21,9 +20,14 @@ const Booking = ({ booking }) => {
             </p>
           </div>
           <div className="card-actions justify-center ">
-            <button className="btn btn-primary text-white bg-gradient-to-r from-secondary to-primary ">
+            <label
+              onClick={() => setTreatment(booking)}
+              disabled={slots.length === 0}
+              for="booking-modal"
+              class="btn modal-button btn-primary text-white bg-gradient-to-r from-secondary to-primary "
+            >
               book appointment
-            </button>
+            </label>
           </div>
         </div>
       </div>
