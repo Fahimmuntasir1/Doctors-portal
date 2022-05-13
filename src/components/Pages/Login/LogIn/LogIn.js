@@ -1,21 +1,41 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import auth from "../../../../firebase.init";
 import { useForm } from "react-hook-form";
+import Spinner from "../../Sheared/Spinner";
 
 const LogIn = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, googleUser, googleLoading, googleError] =
+    useSignInWithGoogle(auth);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
 
-  console.log(user);
+  console.log(googleUser);
+  let signInErrors;
+  if (error || googleError) {
+    signInErrors = (
+      <p className="text-red-400 italic text-sm">
+        Error: {error?.message} {googleError?.message}
+      </p>
+    );
+  }
+
+  if (loading || googleLoading) {
+    return <Spinner />;
+  }
 
   const onSubmit = (data) => {
     console.log(data);
+    signInWithEmailAndPassword(data.email, data.password);
   };
 
   return (
@@ -119,6 +139,7 @@ const LogIn = () => {
             >
               CONTINUE WITH GOOGLE
             </button>
+            {signInErrors}
           </div>
         </div>
       </div>
