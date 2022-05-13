@@ -13,14 +13,14 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
 
   return (
     <div>
-      <input type="checkbox" id="booking-modal" class="modal-toggle" />
-      <div class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
+      <input type="checkbox" id="booking-modal" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
           <div className="flex items-center justify-between  mb-8">
-            <h3 class="font-bold text-lg"> {name}</h3>
+            <h3 className="font-bold text-lg"> {name}</h3>
             <label
               for="booking-modal"
-              class="btn btn-sm btn-circle right-2 top-2"
+              className="btn btn-sm btn-circle right-2 top-2"
             >
               ✕
             </label>
@@ -34,9 +34,9 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
               disabled
               value={format(date, "PP")}
               placeholder="Type here"
-              class="input input-bordered w-full"
+              className="input input-bordered w-full"
             />
-            <select name="slot" class="select select-bordered w-full ">
+            <select name="slot" className="select select-bordered w-full ">
               {slots.map((slot) => (
                 <option value={slot}>{slot}</option>
               ))}
@@ -45,24 +45,24 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
               type="text"
               name="name"
               placeholder="Enter name here"
-              class="input input-bordered w-full "
+              className="input input-bordered w-full "
             />
             <input
               type="email"
               name="email"
               placeholder="Enter email here"
-              class="input input-bordered w-full "
+              className="input input-bordered w-full "
             />
             <input
               type="text"
               name="phone"
               placeholder="Enter phone here"
-              class="input input-bordered w-full "
+              className="input input-bordered w-full "
             />
             <input
               type="submit"
               value="Submit"
-              class="btn btn-accent w-full "
+              className="btn btn-accent w-full "
             />
           </form>
         </div>
