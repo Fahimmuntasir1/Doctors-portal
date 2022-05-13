@@ -1,27 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const menuItems = (
     <>
-      <li>
-        <Link to="/">Home</Link>
+      <li className="lg:mx-2">
+        <NavLink to="/">Home</NavLink>
       </li>
 
-      <li>
-        <Link to="/appointment">Appointment</Link>
+      <li className="lg:mx-2">
+        <NavLink to="/appointment">Appointment</NavLink>
       </li>
-      <li>
-        <Link to="/reviews">Reviews</Link>
+      <li className="lg:mx-2">
+        <NavLink to="/reviews">Reviews</NavLink>
       </li>
-      <li>
-        <Link to="/contact">Contact Us</Link>
+      <li className="lg:mx-2">
+        <NavLink to="/contact">Contact Us</NavLink>
       </li>
-      <li>
-        <Link to="/about">About Us</Link>
+      <li className="lg:mx-2">
+        <NavLink to="/about">About Us</NavLink>
       </li>
-      <li>
-        <Link to="/login">Login/Signup</Link>
+      <li className="lg:mx-2">
+        <NavLink to="/login">Login/Signup</NavLink>
       </li>
     </>
   );
@@ -57,7 +57,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-0">{menuItems}</ul>
+        <ul className="menu menu-horizontal p-0 ">{menuItems}</ul>
       </div>
     </div>
   );
