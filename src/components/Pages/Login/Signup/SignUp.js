@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../../firebase.init";
 import Spinner from "../../Sheared/Spinner";
 
@@ -24,6 +24,8 @@ const SignUp = () => {
 
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || "/";
 
   console.log(googleUser);
   console.log(user);
@@ -47,7 +49,7 @@ const SignUp = () => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
     console.log('profile update done');
-    navigate('/')
+    navigate(from, { replace: true })
   };
   return (
     <div className="hero min-h-screen ">

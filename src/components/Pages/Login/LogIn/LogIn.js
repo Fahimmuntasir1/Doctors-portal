@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   useSignInWithEmailAndPassword,
@@ -22,9 +22,11 @@ const LogIn = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  if (user || googleUser) {
-    navigate(from, { replace: true });
-  }
+  useEffect(() => {
+    if (user || googleUser) {
+      navigate(from, { replace: true });
+    }
+  }, [user, googleUser]);
 
   console.log(googleUser);
   let signInErrors;

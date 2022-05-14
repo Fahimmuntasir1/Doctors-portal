@@ -31,7 +31,7 @@ const Header = () => {
       </li>
       <li className="lg:mx-2">
         {user ? (
-          <button onClick={logout} class="btn btn-outline btn-primary">
+          <button onClick={logout} className="btn btn-outline btn-primary">
             SignOut
           </button>
         ) : (

@@ -23,7 +23,7 @@ const Booking = ({ booking, setTreatment }) => {
             <label
               onClick={() => setTreatment(booking)}
               disabled={slots.length === 0}
-              for="booking-modal"
+              htmlFor="booking-modal"
               className="btn modal-button btn-primary text-white bg-gradient-to-r from-secondary to-primary "
             >
               book appointment
