@@ -2,15 +2,30 @@ import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 import Booking from "./Booking";
 import BookingModal from "./BookingModal";
+import { useQuery } from "react-query";
+import Spinner from "../Sheared/Spinner";
 
 const AvailableAppointment = ({ date }) => {
-  const [bookings, setBookings] = useState();
+  // const [bookings, setBookings] = useState([]);
   const [treatment, setTreatment] = useState(null);
-  useEffect(() => {
-    fetch('http://localhost:5000/slot')
-      .then((res) => res.json())
-      .then((data) => setBookings(data));
-  }, []);
+  const formattedDate = format(date, "PP");
+
+  const { isLoading, refetch, data: bookings } = useQuery(
+    ["available", formattedDate],
+    () =>
+      fetch(`http://localhost:5000/available?date=${formattedDate}`).then(
+        (res) => res.json()
+      )
+  );
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/available?date=${formattedDate}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setBookings(data));
+  // }, [formattedDate]);
   return (
     <div className="py-10">
       <h4 className="text-secondary text-center text-xl py-10">
@@ -30,6 +45,7 @@ const AvailableAppointment = ({ date }) => {
           date={date}
           setTreatment={setTreatment}
           treatment={treatment}
+          refetch={refetch}
         ></BookingModal>
       )}
     </div>
