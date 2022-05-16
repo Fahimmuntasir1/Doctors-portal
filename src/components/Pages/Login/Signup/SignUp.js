@@ -27,14 +27,15 @@ const SignUp = () => {
 
   const [token] = useToken(user || googleUser);
 
+  console.log(user);
+  console.log(googleUser);
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  // console.log(googleUser);
-  // console.log(user);
   if (token) {
-    navigate(from, { replace: true })
+    navigate(from, { replace: true });
   }
 
   let signInErrors;
@@ -149,7 +150,7 @@ const SignUp = () => {
                 )}
               </div>
               <div className="form-control ">
-                <button className="btn btn-accent">Login</button>
+                <button className="btn btn-accent">Sign Up</button>
               </div>
             </form>
             <p className="text-xs text-center">

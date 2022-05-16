@@ -56,7 +56,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
           <div className="flex items-center justify-between  mb-8">
             <h3 className="font-bold text-lg"> {name}</h3>
             <label
-              for="booking-modal"
+              htmlFor="booking-modal"
               className="btn btn-sm btn-circle right-2 top-2"
             >
               ✕

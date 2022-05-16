@@ -7,6 +7,7 @@ import {
 import auth from "../../../../firebase.init";
 import { useForm } from "react-hook-form";
 import Spinner from "../../Sheared/Spinner";
+import useToken from "../../../../hooks/useToken";
 
 const LogIn = () => {
   const [signInWithGoogle, googleUser, googleLoading, googleError] =
@@ -18,15 +19,17 @@ const LogIn = () => {
   } = useForm();
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const [token] = useToken(user || googleUser);
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
-    if (user || googleUser) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, googleUser]);
+  }, [token]);
 
   console.log(googleUser);
   let signInErrors;
