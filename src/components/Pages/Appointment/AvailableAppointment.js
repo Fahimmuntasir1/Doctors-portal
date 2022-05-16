@@ -7,25 +7,40 @@ import Spinner from "../Sheared/Spinner";
 
 const AvailableAppointment = ({ date }) => {
   // const [bookings, setBookings] = useState([]);
-  const [treatment, setTreatment] = useState(null);
-  const formattedDate = format(date, "PP");
+  // const [treatment, setTreatment] = useState(null);
+  // const formattedDate = format(date, "PP");
+  // console.log(formattedDate);
 
-  const { isLoading, refetch, data: bookings } = useQuery(
-    ["available", formattedDate],
-    () =>
-      fetch(`http://localhost:5000/available?date=${formattedDate}`).then(
-        (res) => res.json()
-      )
+  // const {
+  //   isLoading,
+  //   refetch,
+  //   data: bookings,
+  // } = useQuery(["available", formattedDate], () =>
+  //   fetch(`http://localhost:5000/available?date=${formattedDate}`).then((res) =>
+  //     res.json()
+  //   )
+  // );
+  // if (isLoading) {
+  //   return <Spinner />;
+  // }
+
+  const [treatment, setTreatment] = useState(null);
+
+  const formattedDate = format(date, "PP");
+  const {
+    data: bookings,
+    isLoading,
+    refetch,
+  } = useQuery(["available", formattedDate], () =>
+    fetch(`http://localhost:5000/available?date=${formattedDate}`).then((res) =>
+      res.json()
+    )
   );
+
   if (isLoading) {
-    return <Spinner />;
+    return <Spinner></Spinner>;
   }
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/available?date=${formattedDate}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setBookings(data));
-  // }, [formattedDate]);
   return (
     <div className="py-10">
       <h4 className="text-secondary text-center text-xl py-10">

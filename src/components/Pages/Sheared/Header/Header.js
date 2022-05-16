@@ -83,7 +83,7 @@ const Header = () => {
       <div className="navbar-end">
         <label
           tabIndex="1"
-          for="my-drawer-2"
+          htmlFor="my-drawer-2"
           className="btn btn-ghost lg:hidden"
         >
           <svg

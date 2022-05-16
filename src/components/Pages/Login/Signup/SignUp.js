@@ -7,6 +7,7 @@ import {
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../../firebase.init";
+import useToken from "../../../../hooks/useToken";
 import Spinner from "../../Sheared/Spinner";
 
 const SignUp = () => {
@@ -23,12 +24,18 @@ const SignUp = () => {
     useCreateUserWithEmailAndPassword(auth);
 
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
-  const navigate = useNavigate()
-  const location = useLocation()
+
+  const [token] = useToken(user || googleUser);
+
+  const navigate = useNavigate();
+  const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  console.log(googleUser);
-  console.log(user);
+  // console.log(googleUser);
+  // console.log(user);
+  if (token) {
+    navigate(from, { replace: true })
+  }
 
   let signInErrors;
   if (error || googleError || updateError) {
@@ -45,11 +52,9 @@ const SignUp = () => {
   }
 
   const onSubmit = async (data) => {
-    console.log(data);
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
-    console.log('profile update done');
-    navigate(from, { replace: true })
+    console.log("profile update done");
   };
   return (
     <div className="hero min-h-screen ">
