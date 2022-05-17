@@ -4,8 +4,13 @@ import Spinner from "../Sheared/Spinner";
 import UserRow from "./UserRow";
 
 const AllUsers = () => {
-  const { data: users, isLoading } = useQuery("users", () =>
-    fetch("http://localhost:5000/user").then((res) => res.json())
+  const { data: users, isLoading , refetch} = useQuery("users", () =>
+    fetch("http://localhost:5000/user", {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }).then((res) => res.json())
   );
   if (isLoading) {
     return <Spinner />;
@@ -13,8 +18,8 @@ const AllUsers = () => {
   return (
     <div>
       <h2>All Users: {users.length}</h2>
-      <div class="overflow-x-auto">
-        <table class="table w-full">
+      <div className="overflow-x-auto">
+        <table className="table w-full">
           <thead>
             <tr>
               <th></th>
@@ -24,8 +29,8 @@ const AllUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
-              <UserRow key={user._id} user={user} index={index}></UserRow>
+            {users?.map((user, index) => (
+              <UserRow key={user._id} user={user} index={index} refetch={refetch}></UserRow>
             ))}
           </tbody>
         </table>
