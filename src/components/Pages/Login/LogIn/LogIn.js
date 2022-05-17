@@ -31,7 +31,6 @@ const LogIn = () => {
     }
   }, [token]);
 
-  console.log(googleUser);
   let signInErrors;
   if (error || googleError) {
     signInErrors = (
