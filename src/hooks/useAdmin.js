@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 
 const useAdmin = (user) => {
   const [admin, setAdmin] = useState(false);
+  console.log(admin);
 
   useEffect(() => {
-    const email = user.email;
+    const email = user?.email;
     if (email) {
       fetch(`http://localhost:5000/admin/${email}`, {
         method: "GET",
@@ -13,9 +14,9 @@ const useAdmin = (user) => {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       })
-        .then((res) => res())
+        .then((res) => res.json())
         .then((data) => {
-          setAdmin(data.admin);
+          setAdmin(data.Admin);
         });
     }
   }, [user]);

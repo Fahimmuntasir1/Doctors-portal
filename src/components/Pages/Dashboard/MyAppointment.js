@@ -17,7 +17,6 @@ const MyAppointment = () => {
         },
       })
         .then((res) => {
-          console.log("res", res);
           if (res.status === 401 || res.status === 403) {
             signOut(auth);
             localStorage.removeItem("accessToken");
@@ -47,7 +46,7 @@ const MyAppointment = () => {
           </thead>
           <tbody>
             {appointments?.map((appointment, index) => (
-              <tr>
+              <tr key={index}>
                 <th>{index + 1}</th>
                 <td>{appointment.patientName}</td>
                 <td>{appointment.date}</td>
