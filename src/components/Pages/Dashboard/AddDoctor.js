@@ -1,13 +1,21 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useQuery } from "react-query";
+import Spinner from "../Sheared/Spinner";
 
 const AddDoctor = () => {
+  const { data: services, isLoading } = useQuery("services", () =>
+    fetch("http://localhost:5000/slot").then((res) => res.json())
+  );
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
+  if (isLoading) {
+    return <Spinner />;
+  }
   const onSubmit = async (data) => {
     console.log("data", data);
   };
@@ -36,6 +44,27 @@ const AddDoctor = () => {
           {errors.name?.type === "required" && (
             <span className="text-red-500 text-xs mt-1">
               {errors?.name.message}
+            </span>
+          )}
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Upload Photo</span>
+          </label>
+          <input
+            {...register("image", {
+              required: {
+                value: true,
+                message: "Enter your name",
+              },
+            })}
+            type="file"
+            placeholder="Enter Your Name"
+            className="input input-bordered"
+          />
+          {errors.image?.type === "required" && (
+            <span className="text-red-500 text-xs mt-1">
+              {errors?.image.message}
             </span>
           )}
         </div>
@@ -73,22 +102,14 @@ const AddDoctor = () => {
           <label className="label">
             <span className="label-text">Specialization</span>
           </label>
-          <input
-            {...register("specialization", {
-              required: {
-                value: true,
-                message: "specialization is required",
-              }
-            })}
-            type="text"
-            placeholder="Doctor's Specialization"
-            className="input input-bordered"
-          />
-          {errors.specialization?.type === "required" && (
-            <span className="text-red-500 text-xs mt-1">
-              {errors?.specialization.message}
-            </span>
-          )}
+          <select
+            {...register("specialization")}
+            class="select w-full max-w-xs select-bordered"
+          >
+            {services.map((service) => (
+              <option key={service._id}>{service.name}</option>
+            ))}
+          </select>
         </div>
         <div className="form-control ">
           <button className="btn btn-accent mt-2">Sign Up</button>
