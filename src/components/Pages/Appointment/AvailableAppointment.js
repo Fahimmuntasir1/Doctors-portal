@@ -16,7 +16,7 @@ const AvailableAppointment = ({ date }) => {
   //   refetch,
   //   data: bookings,
   // } = useQuery(["available", formattedDate], () =>
-  //   fetch(`http://localhost:5000/available?date=${formattedDate}`).then((res) =>
+  //   fetch(` http://localhost:5000/available?date=${formattedDate}`).then((res) =>
   //     res.json()
   //   )
   // );
@@ -32,8 +32,8 @@ const AvailableAppointment = ({ date }) => {
     isLoading,
     refetch,
   } = useQuery(["available", formattedDate], () =>
-    fetch(`http://localhost:5000/available?date=${formattedDate}`).then((res) =>
-      res.json()
+    fetch(` http://localhost:5000/available?date=${formattedDate}`).then(
+      (res) => res.json()
     )
   );
 
