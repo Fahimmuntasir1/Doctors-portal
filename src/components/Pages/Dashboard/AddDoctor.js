@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
+import { toast } from "react-toastify";
 import Spinner from "../Sheared/Spinner";
 
 const AddDoctor = () => {
@@ -11,13 +12,53 @@ const AddDoctor = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
+
+  const imageStorageKey = "7dc84497fea7eb0e0277e037d6463ad6";
 
   if (isLoading) {
     return <Spinner />;
   }
   const onSubmit = async (data) => {
-    console.log("data", data);
+    const image = data.image[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success) {
+          const img = result.data.url;
+          const doctor = {
+            name: data.name,
+            email: data.email,
+            specialty: data.specialty,
+            img: img,
+          };
+          // send to your database
+          fetch("http://localhost:5000/doctor", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+            body: JSON.stringify(doctor),
+          })
+            .then((res) => res.json())
+            .then((inserted) => {
+              if (inserted.insertedId) {
+                toast.success("Doctor added successfully");
+                reset();
+              } else {
+                toast.error("Failed to add the doctor");
+              }
+            });
+        }
+      });
   };
   return (
     <div
@@ -60,7 +101,7 @@ const AddDoctor = () => {
             })}
             type="file"
             placeholder="Enter Your Name"
-            className="input input-bordered"
+            className="input input-bordered p-1"
           />
           {errors.image?.type === "required" && (
             <span className="text-red-500 text-xs mt-1">
@@ -104,7 +145,7 @@ const AddDoctor = () => {
           </label>
           <select
             {...register("specialization")}
-            class="select w-full max-w-xs select-bordered"
+            className="select w-full max-w-xs select-bordered"
           >
             {services.map((service) => (
               <option key={service._id}>{service.name}</option>
@@ -112,7 +153,7 @@ const AddDoctor = () => {
           </select>
         </div>
         <div className="form-control ">
-          <button className="btn btn-accent mt-2">Sign Up</button>
+          <button className="btn btn-accent mt-2">ADD</button>
         </div>
       </form>
     </div>
