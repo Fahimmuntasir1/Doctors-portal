@@ -6,23 +6,7 @@ import { useQuery } from "react-query";
 import Spinner from "../Sheared/Spinner";
 
 const AvailableAppointment = ({ date }) => {
-  // const [bookings, setBookings] = useState([]);
-  // const [treatment, setTreatment] = useState(null);
-  // const formattedDate = format(date, "PP");
-  // console.log(formattedDate);
 
-  // const {
-  //   isLoading,
-  //   refetch,
-  //   data: bookings,
-  // } = useQuery(["available", formattedDate], () =>
-  //   fetch(` http://localhost:5000/available?date=${formattedDate}`).then((res) =>
-  //     res.json()
-  //   )
-  // );
-  // if (isLoading) {
-  //   return <Spinner />;
-  // }
 
   const [treatment, setTreatment] = useState(null);
 

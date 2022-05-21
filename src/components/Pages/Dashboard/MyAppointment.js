@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 
 const MyAppointment = () => {
@@ -42,18 +42,36 @@ const MyAppointment = () => {
               <th>Date</th>
               <th>Time</th>
               <th>Treatment</th>
+              <th>Payment</th>
             </tr>
           </thead>
           <tbody>
-            {appointments?.map((appointment, index) => (
-              <tr key={index}>
-                <th>{index + 1}</th>
-                <td>{appointment.patientName}</td>
-                <td>{appointment.date}</td>
-                <td>{appointment.slot}</td>
-                <td>{appointment.treatment}</td>
-              </tr>
-            ))}
+            {appointments?.map(
+              (appointment, index) => (
+                console.log(appointment),
+                (
+                  <tr key={index}>
+                    <th>{index + 1}</th>
+                    <td>{appointment.patientName}</td>
+                    <td>{appointment.date}</td>
+                    <td>{appointment.slot}</td>
+                    <td>{appointment.treatment}</td>
+                    <td>
+                      {appointment.price && !appointment.paid && (
+                        <Link to={`/dashboard/payment/${appointment}`}>
+                          <button className="btn btn-xs btn-success text-white">
+                            Pay now!
+                          </button>
+                        </Link>
+                      )}
+                      {appointment.paid && (
+                        <span className="text-success border-2">Paid</span>
+                      )}
+                    </td>
+                  </tr>
+                )
+              )
+            )}
           </tbody>
         </table>
       </div>
